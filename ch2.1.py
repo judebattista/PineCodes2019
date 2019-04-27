@@ -7,7 +7,11 @@ words = {
     3: 'three',
     4: 'four',
     5: 'five',
-    6: 'six'
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    10: 'ten'
 }
 
 ints = list(range(1,1001))
@@ -33,8 +37,9 @@ for val in ints:
             radix *= 10
 print('Without ands or teens: ', letterCount)
 # handle teens: 
+# letters per teen value * 10 sets of teens
 letterCount += (6 + 6 + 8 + 8 + 7 + 7 + 9 + 8 + 8) * 10
-# handle hundreds for teens
+# handle hundreds for teens: 7 letters * 9 teen values * 10 sets
 letterCount += 7 * 9 * 10
 print(letterCount)
 

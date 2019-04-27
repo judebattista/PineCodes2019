@@ -1,0 +1,39 @@
+Backlog
+Tasks
+Daily schedule
+finished
+
+
+Sprint Planning
+Daily Scrum
+Sprint Review
+Sprint Retrospective
+
+Product Owner - user
+Scrum Master - app, user
+Dev team - user
+
+Individual vs. Collaborative
+
+create task
+estimate time for task
+input progress on task
+track remaining time
+finish task
+
+projects have tasks
+tasks exist independently
+
+Schedule
+Attendance tracking - encouragement
+Courses
+	Data entry
+
+Point system
+Badges?
+Negative progress?
+Grade tracker - correlate grades with points?
+
+Music?
+
+
