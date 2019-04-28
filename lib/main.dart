@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-//import 'TodayTasks.dart';
 import 'CreateTasks.dart';
 import 'ChecklistMain.dart';
 import 'Searchpage.dart';
 import 'package:flutter/services.dart';
-import 'PageHome.dart';
-import 'ChecklistMain.dart';
+import 'login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chinchilla_checklist/firestoreMethods.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+//import 'package:logfrog/services/authentication.dart';
+
+
+
 
 void main() => runApp(ChinchillaChecklist());
 
@@ -18,13 +25,14 @@ class ChinchillaChecklist extends StatelessWidget {
     ]);
     return MaterialApp(
         title: 'Chinchilla Checklist',
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.indigo,
           accentColor: Colors.deepPurple[500],
           canvasColor: Colors.teal[200],
         ),
-        home: MyHomePage(title: 'College RPG home'));
+        home: LoginPage(), //home: //MyHomePage(title: 'College RPG home'));
+    );
   }
 }
 
@@ -40,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _bottomNavBarIndex = 0;
   PageHome pageHome; //home screen
+  LoginPage loginPg;
   CreateTasks createTasks;
   SearchPage searchPage;
   ChecklistMain checklistMain;
@@ -51,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //create pages in app
     pageHome = PageHome(); //home screen
     createTasks = CreateTasks(); //create Tasks
+    loginPg = LoginPage();
     searchPage = SearchPage();
     currentPage = pageHome;
     checklistMain = ChecklistMain();
@@ -64,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (loginPg.loginComplete == false) {
+      return loginPg;
+    } else {
     return Scaffold(
       body: currentPage,
       bottomNavigationBar: BottomNavigationBar(
