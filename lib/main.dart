@@ -4,12 +4,7 @@ import 'ChecklistMain.dart';
 import 'Searchpage.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:chinchilla_checklist/firestoreMethods.dart';
-import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
-//import 'package:logfrog/services/authentication.dart';
+import 'package:chinchilla_checklist/PageHome.dart';
 
 
 
@@ -77,37 +72,39 @@ class _MyHomePageState extends State<MyHomePage> {
     if (loginPg.loginComplete == false) {
       return loginPg;
     } else {
-    return Scaffold(
-      body: currentPage,
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _bottomNavBarIndex,
-          onTap: (int index) {
-            setState(() {
-              _bottomNavBarIndex = index;
+      return Scaffold(
+        body: currentPage,
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: _bottomNavBarIndex,
+            onTap: (int index) {
+              setState(() {
+                _bottomNavBarIndex = index;
 
-              //Temp page selector
+                //Temp page selector
 
-              currentPage = pageList[index];
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.calendar_today),
-              title: new Text('Home'),
-            ),
-            BottomNavigationBarItem(
-              icon: new Icon(Icons.search),
-              title: new Text('Search'),
-            ),
-            BottomNavigationBarItem(
-            icon: new Icon(Icons.folder),
-            title: new Text('To Do')
-            )]),
-    );
+                currentPage = pageList[index];
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: new Icon(Icons.home),
+                title: new Text('Home'),
+              ),
+              BottomNavigationBarItem(
+                icon: new Icon(Icons.calendar_today),
+                title: new Text('Home'),
+              ),
+              BottomNavigationBarItem(
+                icon: new Icon(Icons.search),
+                title: new Text('Search'),
+              ),
+              BottomNavigationBarItem(
+                  icon: new Icon(Icons.folder),
+                  title: new Text('To Do')
+              )
+            ]),
+      );
+    }
   }
 }
