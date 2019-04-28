@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'TaskList.dart';
+import 'ProjectList.dart';
+import 'ClassList.dart';
 import 'dart:io';
 //adapted from: https://docs.flutter.io/flutter/material/TabController-class.html
 //Date Accessed: 4/27/2019
@@ -15,14 +18,22 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
     Tab(text : 'Projects'), //Displays all of the User's projects
     Tab(text : 'Classes') //Displays all of the classes the User is currently taking
   ];
-
+  List<Widget> pageList;
   TabController _tabController;
+
+  TaskList taskList;
+  ProjectList projectList;
+  ClassList classList;
 
   @override
   void initState(){
+    taskList = TaskList();
+    projectList = ProjectList();
+    classList = ClassList();
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
     _searchQuery = new TextEditingController();
+    pageList = [taskList, projectList, classList];
   }
 
   @override
