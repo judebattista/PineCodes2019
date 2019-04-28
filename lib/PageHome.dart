@@ -1,16 +1,20 @@
+import 'package:flutter/material.dart';
+
 class PageHome extends StatefulWidget {
+  PageHome({Key key}) : super(key:key);
   @override
-  _PageHomeState createState() => _PageHomeState();
+  PageHomeState createState() => PageHomeState();
 }
 
-class _PageHomeState extends PageHome {
+class PageHomeState extends State<PageHome> {
   @override
-  Widget build(contextBuild context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: Text("Today's Tasks"),
-    ),
-    body: Center(
-    ),
+      appBar : AppBar(
+        title: Text('College RPG'),
+      ),
+
+      ),
+
   }
 }
