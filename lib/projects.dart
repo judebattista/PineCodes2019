@@ -2,6 +2,7 @@
 
 
 class Projects {
+  String _id;
   String _projectName;
   DateTime _finalDueDate;
   List<String> _taskKeys; //keys of tasks which are added to the project
@@ -10,9 +11,10 @@ class Projects {
   int _currentTasks;
 
 
-  Projects(this._projectName, this._finalDueDate, this._taskKeys, this._className);
+  Projects(this._id, this._projectName, this._finalDueDate, this._taskKeys, this._className);
 
   //get methods to access private variables
+  String get id => _id;
   String get name => _projectName;
   DateTime get finalDueDate => _finalDueDate;
   List<String> get taskKeys => _taskKeys;
@@ -23,6 +25,7 @@ class Projects {
 
   //creates history object mapping
   Projects.map(dynamic obj) {
+    this._id = obj['id'];
     this._projectName = obj['projectName'];
     this._finalDueDate = obj['finalDueDate'];
     this._taskKeys = obj['taskKeys'];
@@ -34,6 +37,7 @@ class Projects {
   //creates a map from a history object
   static Map<String, dynamic> toMap(Projects p) {
     var map = new Map<String, dynamic>();
+    map['id'] = p._id;
     map['projectName'] = p._projectName;
     map['finalDueDate'] = p._finalDueDate;
     map['taskKeys'] = p._taskKeys;
@@ -45,6 +49,7 @@ class Projects {
 
   //creates a history object from a map (how history objects will be created from those stored on firebase already)
   Projects.fromMap(Map<String, dynamic> map) {
+    this._id = map['id'];
     this._projectName = map['projectName'];
     this._finalDueDate = map['finalDueDate'];
     this._taskKeys = map['taskKeys'];

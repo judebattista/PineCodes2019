@@ -2,6 +2,7 @@
 
 
 class Tasks {
+  String _id;
   String _name;
   DateTime _dueDate;
   double _timeEstimate;
@@ -12,9 +13,10 @@ class Tasks {
   String _projectName;
 
 
-  Tasks(this._name, this._dueDate, this._timeEstimate, this._timeCompleted, this._semester, this._year, this._className, this._projectName);
+  Tasks(this._id, this._name, this._dueDate, this._timeEstimate, this._timeCompleted, this._semester, this._year, this._className, this._projectName);
 
   //get methods to access private variables
+  String get id => _id;
   String get name => _name;
   DateTime get dueDate => _dueDate;
   double get timeEstimate => _timeEstimate;
@@ -26,6 +28,7 @@ class Tasks {
 
   //creates history object mapping
   Tasks.map(dynamic obj) {
+    this._id = obj['id'];
     this._name = obj['name'];
     this._dueDate = obj['dueDate'];
     this._timeEstimate = obj['timeEstimate'];
@@ -39,6 +42,7 @@ class Tasks {
   //creates a map from a history object
   static Map<String, dynamic> toMap(Tasks t) {
     var map = new Map<String, dynamic>();
+    map['id'] = t._id;
     map['name'] = t._name;
     map['dueDate'] = t._dueDate;
     map['timeEstimate'] = t._timeEstimate;
@@ -52,6 +56,7 @@ class Tasks {
 
   //creates a history object from a map (how history objects will be created from those stored on firebase already)
   Tasks.fromMap(Map<String, dynamic> map) {
+    this._id = map['id'];
     this._name = map['name'];
     this._dueDate = map['dueDate'];
     this._timeEstimate = map['timeEstimate'];
