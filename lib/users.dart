@@ -1,4 +1,4 @@
-https://www.developerlibs.com/2018/10/flutter-login-registration-authentication-firebase.html
+//https://www.developerlibs.com/2018/10/flutter-login-registration-authentication-firebase.html
 
 class Users {
   String _name;

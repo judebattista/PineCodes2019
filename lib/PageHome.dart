@@ -3,17 +3,78 @@ import 'package:flutter/material.dart';
 class PageHome extends StatefulWidget {
   PageHome({Key key}) : super(key:key);
   @override
-  PageHomeState createState() => PageHomeState();
+  //PageHomeState createState() => PageHomeState();
+  PageHomeState createState() {
+    return new PageHomeState();
+  }
 }
+
+
 
 class PageHomeState extends State<PageHome> {
   @override
   Widget build(BuildContext context) {
+    const double coinSize = 30;
     return Scaffold(
       appBar : AppBar(
         title: Text('College RPG PageHome'),
       ),
-      );
+      body: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  'College: The RPG',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black54,
+                    decoration: TextDecoration.underline,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  )
+                )
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Image.asset(
+                    'Assets/Coin.gif',
+                    width: coinSize,
+                    height: coinSize,
+                    fit: BoxFit.contain,
+                  ),
+                  Image.asset(
+                    'Assets/Coin.gif',
+                    width: coinSize,
+                    height: coinSize,
+                    fit: BoxFit.contain,
+                  ),
 
+                ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+              ),
+              Column(
+                children: <Widget>[
+                  Image.asset(
+                    'Assets/demo_character.png',
+                    width: 300,
+                    height: 500,
+                    fit: BoxFit.contain,
+                  ),
+                ]
+              ),
+            ],
+          ),
+        ], //ListView children
+      ),
+    );
   }
 }
