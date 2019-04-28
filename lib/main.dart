@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'TodayTasks.dart';
-import 'CreateTasks.dart';
+//import 'TodayTasks.dart';
+//import 'CreateTasks.dart';
 import 'package:flutter/services.dart';
-import 'PageHome.dart';
+//import 'PageHome.dart';
 
 void main() => runApp(ChinchillaChecklist());
 
@@ -34,9 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CreateTasks createTasks;
-  TodayTasks todayTasks;
-  PageHome pageHome;
+  //CreateTasks createTasks;
+  //TodayTasks todayTasks;
+  //PageHome pageHome;
 
   List<Widget> pageList;
   Widget currentPage;
@@ -44,11 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState(){
 
-    createTasks = CreateTasks();
-    todayTasks = TodayTasks();
-    pageHome = PageHome();
+    //createTasks = CreateTasks();
+    //todayTasks = TodayTasks();
+    //pageHome = PageHome();
 
-    pageList = []
+    pageList = [];
     super.initState();
   }
 

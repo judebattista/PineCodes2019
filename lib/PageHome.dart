@@ -13,8 +13,7 @@ class PageHomeState extends State<PageHome> {
       appBar : AppBar(
         title: Text('College RPG'),
       ),
-
-      ),
+      );
 
   }
 }
