@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'TodayTasks.dart';
 import 'CreateTasks.dart';
+import 'ChecklistMain.dart';
 import 'Searchpage.dart';
 import 'package:flutter/services.dart';
 import 'PageHome.dart';
@@ -41,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   PageHome pageHome; //home screen
   CreateTasks createTasks;
   SearchPage searchPage;
+  ChecklistMain checklistMain;
   List<Widget> pageList;
   Widget currentPage;
 
@@ -51,7 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
     createTasks = CreateTasks(); //create Tasks
     searchPage = SearchPage();
     currentPage = pageHome;
-    pageList = [pageHome, createTasks, searchPage];
+    checklistMain = ChecklistMain();
+    pageList = [pageHome, createTasks, searchPage, checklistMain];
     super.initState();
   }
 
@@ -91,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
             icon: new Icon(Icons.folder),
             title: new Text('To Do')
-          ]),
+            )]),
     );
   }
 }
