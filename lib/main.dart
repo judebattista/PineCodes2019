@@ -4,6 +4,7 @@ import 'CreateTasks.dart';
 import 'Searchpage.dart';
 import 'package:flutter/services.dart';
 import 'PageHome.dart';
+import 'ChecklistMain.dart';
 
 void main() => runApp(ChinchillaChecklist());
 
@@ -87,6 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: new Icon(Icons.search),
               title: new Text('Search'),
             ),
+            BottomNavigationBarItem(
+            icon: new Icon(Icons.folder),
+            title: new Text('To Do')
           ]),
     );
   }
