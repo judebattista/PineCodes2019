@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "794361765280",
+    "firebase_url": "https://collegerpg-18093.firebaseio.com",
+    "project_id": "collegerpg-18093",
+    "storage_bucket": "collegerpg-18093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794361765280:android:d23d8551116eeffc",
+        "android_client_info": {
+          "package_name": "com.rosechinchilla.chinchilla_checklist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794361765280-umui77srlnnd6emld2o4ir84uklqhb1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUX_wf-yHBTdCaP-M9o6zWc7BeQ_5M-jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794361765280-umui77srlnnd6emld2o4ir84uklqhb1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
