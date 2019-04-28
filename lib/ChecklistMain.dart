@@ -12,19 +12,18 @@ class ChecklistMain extends StatefulWidget {
   _ChecklistMainState createState() => _ChecklistMainState();
 }
 
-class _ChecklistMainState extends State<ChecklistMain>
-    with SingleTickerProviderStateMixin {
+//Tab controller adapted from: https://kodestat.gitbook.io/flutter/flutter-tab-navigation (4/27/19)
+class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProviderStateMixin {
+  //Navigation tabs
   final List<Tab> myTabs = <Tab>[
     Tab(text: 'Tasks'), //Displays all of the User's tasks
     Tab(text: 'Projects'), //Displays all of the User's projects
-    Tab(
-        text:
-            'Classes') //Displays all of the classes the User is currently taking
+    Tab(text: 'Classes') //Displays all of the classes the User is currently taking
   ];
+
   List<Widget> pageList;
   Widget currentPage;
   TabController _tabController;
-
   TaskList taskList;
   ProjectList projectList;
   ClassList classList;
@@ -41,6 +40,7 @@ class _ChecklistMainState extends State<ChecklistMain>
     pageList = [taskList, projectList, classList];
   }
 
+  //For tab controller
   @override
   void dispose() {
     _tabController.dispose();
@@ -147,6 +147,41 @@ class _ChecklistMainState extends State<ChecklistMain>
     ];
   }
 
+  //building body (middle screen) viewing of lists if a search term has been entered or if it has not been entered
+  //We want body for each widget types to be similar to this medium example: https://medium.com/flutter-community/breaking-layouts-in-rows-and-columns-in-flutter-8ea1ce4c1316
+  
+  Widget _buildTasksBody() {
+    //we want a list of bars with tasks names with due date and etc. in there if there is a searchQuery phrase
+    if (searchQuery == "Search query") {
+      //this is the default message
+      //just display centered app name
+      return Container(
+        child: Center (
+          child: Text("CollegeRPG")
+        )
+      );
+    } else {
+      //search has been entered
+      //update to list of relevant items, needs a listener???
+
+    }
+  }
+
+  Widget _buildProjectsBody() {
+    if (searchQuery == "Search query") {
+      return Container(
+        child: Center(
+          child: Text("CollegeRPG")
+        )
+      );
+    } else {
+
+    }
+  }
+
+  Widget _buildClassesBody() {}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,11 +191,23 @@ class _ChecklistMainState extends State<ChecklistMain>
         actions: _buildActions(),
         bottom: TabBar(
           controller: _tabController,
-          tabs: myTabs,
+          tabs: myTabs, //tabs for top search portion
         ),
       ),
+
+      //Fix #2: (better) https://kodestat.gitbook.io/flutter/flutter-tab-navigation
+      //Hooks the body for the tabs to new widgets we can generate the search from
+      //If no search query defined, we can just display app name???
       body: TabBarView(
-        myTabs: <Tabs>(
+        controller: _tabController,
+        //type: BottomNavigationBar.fixed,
+        children: <Widget> [
+          _buildTasksBody(), //tasks
+          _buildProjectsBody(), //projects
+          _buildClassesBody(), //classes
+        ],
+      ),
+        /*myTabs: <Tabs>(
             type: BottomNavigationBarType.fixed,
             currentIndex: _bottomNavBarIndex,
             onTap: (int index) {
@@ -177,6 +224,7 @@ class _ChecklistMainState extends State<ChecklistMain>
           return Center(child: Text(tab.text));
         }).toList(),
       ),
+      */
     );
   }
 }
