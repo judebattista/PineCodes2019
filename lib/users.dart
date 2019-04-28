@@ -1,6 +1,7 @@
 //https://www.developerlibs.com/2018/10/flutter-login-registration-authentication-firebase.html
 
 class Users {
+  String _id;
   String _name;
   //AVATAR//https://www.monstertechnocodes.com/2019/01/storing-user-data-like-name-image-to.html (tutorial for storing image data)
   int _currentYear;
@@ -11,8 +12,8 @@ class Users {
   int _lifetimeCoins;
   int _currentCoins;
 
-  Users(this._name, this._currentYear, this._currentSemester, this._currentSemesterEndDate, this._email, this._password, this._lifetimeCoins, this._currentCoins);
-
+  Users(this._id, this._name, this._currentYear, this._currentSemester, this._currentSemesterEndDate, this._email, this._password, this._lifetimeCoins, this._currentCoins);
+  String get id => _id;
   String get name => _name;
   int get currentYear =>_currentYear;
   String get currentSemester => _currentSemester;
@@ -23,6 +24,7 @@ class Users {
   int get currentCoins => _currentCoins;
 
   Users.map(dynamic obj) {
+    this._id = obj['id'];
     this._name = obj['name'];
     this._currentYear = obj['currentYear'];
     this._currentSemester = obj['currentSemester'];
@@ -35,6 +37,7 @@ class Users {
 
   static Map<String, dynamic> toMap(Users u) {
     var map = new Map<String, dynamic>();
+    map['id'] = u._id;
     map['name'] = u._name;
     map['currentYear'] = u._currentYear;
     map['currentSemester'] = u._currentSemester;
@@ -46,6 +49,7 @@ class Users {
   }
 
   Users.fromMap(Map<String, dynamic> map) {
+    this._id = map['id'];
     this._name = map['name'];
     this._currentYear = map['currentYear'];
     this._currentSemester = map['currentSemester'];
