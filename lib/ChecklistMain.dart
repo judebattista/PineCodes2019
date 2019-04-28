@@ -7,18 +7,22 @@ import 'dart:io';
 //Date Accessed: 4/27/2019
 
 class ChecklistMain extends StatefulWidget {
-  const ChecklistMain({ Key key }) : super(key: key);
+  const ChecklistMain({Key key}) : super(key: key);
   @override
   _ChecklistMainState createState() => _ChecklistMainState();
 }
 
-class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProviderStateMixin {
+class _ChecklistMainState extends State<ChecklistMain>
+    with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = <Tab>[
     Tab(text: 'Tasks'), //Displays all of the User's tasks
-    Tab(text : 'Projects'), //Displays all of the User's projects
-    Tab(text : 'Classes') //Displays all of the classes the User is currently taking
+    Tab(text: 'Projects'), //Displays all of the User's projects
+    Tab(
+        text:
+            'Classes') //Displays all of the classes the User is currently taking
   ];
   List<Widget> pageList;
+  Widget currentPage;
   TabController _tabController;
 
   TaskList taskList;
@@ -26,10 +30,11 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
   ClassList classList;
 
   @override
-  void initState(){
+  void initState() {
     taskList = TaskList();
     projectList = ProjectList();
     classList = ClassList();
+    currentPage = TaskList();
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
     _searchQuery = new TextEditingController();
@@ -37,12 +42,13 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _tabController.dispose();
     super.dispose();
   }
+
   static final GlobalKey<ScaffoldState> scaffoldKey =
-  new GlobalKey<ScaffoldState>();
+      new GlobalKey<ScaffoldState>();
 
   TextEditingController _searchQuery;
   bool _isSearching = false;
@@ -53,8 +59,7 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
   //date accessed: 4/27/2019
   void _startSearch() {
     print("open search box");
-    ModalRoute
-        .of(context)
+    ModalRoute.of(context)
         .addLocalHistoryEntry(new LocalHistoryEntry(onRemove: _stopSearching));
 
     setState(() {
@@ -80,7 +85,7 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
 
   Widget _buildTitle(BuildContext context) {
     var horizontalTitleAlignment =
-    Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+        Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
 
     return new InkWell(
       onTap: () => scaffoldKey.currentState.openDrawer(),
@@ -112,16 +117,13 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
   }
 
   void updateSearchQuery(String newQuery) {
-
     setState(() {
       searchQuery = newQuery;
     });
     print("search query " + newQuery);
-
   }
 
   List<Widget> _buildActions() {
-
     if (_isSearching) {
       return <Widget>[
         new IconButton(
@@ -144,6 +146,7 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
       ),
     ];
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,19 +154,29 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
         leading: _isSearching ? const BackButton() : null,
         title: _isSearching ? _buildSearchField() : _buildTitle(context),
         actions: _buildActions(),
-
         bottom: TabBar(
           controller: _tabController,
           tabs: myTabs,
         ),
       ),
       body: TabBarView(
+        myTabs: <Tabs>(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: _bottomNavBarIndex,
+            onTap: (int index) {
+              setState(() {
+                _bottomNavBarIndex = index;
+
+                //Temp page selector
+
+                currentPage = pageList[index];
+              });
+            },
         controller: _tabController,
         children: myTabs.map((Tab tab) {
           return Center(child: Text(tab.text));
         }).toList(),
       ),
     );
-
   }
 }
