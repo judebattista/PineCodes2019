@@ -12,7 +12,6 @@ class LoginPage extends StatefulWidget {
   final String title;
   bool testMode = false;
   bool loginComplete = false;
-
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
