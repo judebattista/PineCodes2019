@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'CreateTasks.dart';
 import 'ChecklistMain.dart';
-import 'Searchpage.dart';
 import 'package:flutter/services.dart';
-import 'login.dart';
+//import 'login.dart';
 import 'package:chinchilla_checklist/PageHome.dart';
-
-
-
 
 void main() => runApp(ChinchillaChecklist());
 
@@ -26,8 +22,7 @@ class ChinchillaChecklist extends StatelessWidget {
           accentColor: Colors.deepPurple[500],
           canvasColor: Colors.teal[200],
         ),
-        home: LoginPage(), //home: //MyHomePage(title: 'College RPG home'));
-    );
+        home: MyHomePage(title: 'College RPG home'));
   }
 }
 
@@ -43,9 +38,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _bottomNavBarIndex = 0;
   PageHome pageHome; //home screen
-  LoginPage loginPg;
+  //LoginPage loginPg;
   CreateTasks createTasks;
-  SearchPage searchPage;
   ChecklistMain checklistMain;
   List<Widget> pageList;
   Widget currentPage;
@@ -55,11 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
     //create pages in app
     pageHome = PageHome(); //home screen
     createTasks = CreateTasks(); //create Tasks
-    loginPg = LoginPage();
-    searchPage = SearchPage();
+    //loginPg = LoginPage();
     currentPage = pageHome;
     checklistMain = ChecklistMain();
-    pageList = [pageHome, createTasks, searchPage, checklistMain];
+    pageList = [pageHome, createTasks, checklistMain];
     super.initState();
   }
 
@@ -69,9 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (loginPg.loginComplete == false) {
-      return loginPg;
-    } else {
+//    if (loginPg.loginComplete == false) {
+//      return loginPg;
+//    } else {
       return Scaffold(
         body: currentPage,
         bottomNavigationBar: BottomNavigationBar(
@@ -96,15 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: new Text('Home'),
               ),
               BottomNavigationBarItem(
-                icon: new Icon(Icons.search),
-                title: new Text('Search'),
-              ),
-              BottomNavigationBarItem(
-                  icon: new Icon(Icons.folder),
-                  title: new Text('To Do')
-              )
+                  icon: new Icon(Icons.folder), title: new Text('To Do'))
             ]),
       );
     }
   }
-}
+//}
