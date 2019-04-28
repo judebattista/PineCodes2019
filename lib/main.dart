@@ -18,11 +18,11 @@ class ChinchillaChecklist extends StatelessWidget {
         title: 'Chinchilla Checklist',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
+          primarySwatch: Colors.pink,
           accentColor: Colors.deepPurple[500],
-          canvasColor: Colors.teal[200],
+          //canvasColor: Colors.teal[200],
         ),
-        home: MyHomePage(title: 'College RPG home'));
+        home: MyHomePage(title: 'Demo Character\'s stats'));
   }
 }
 

@@ -17,7 +17,7 @@ class PageHomeState extends State<PageHome> {
     const double coinSize = 30;
     return Scaffold(
       appBar : AppBar(
-        title: Text('College RPG PageHome'),
+        title: Text('Demo Character\'s stats'),
       ),
       body: Column(
         children: <Widget>[
@@ -49,12 +49,6 @@ class PageHomeState extends State<PageHome> {
                     height: coinSize,
                     fit: BoxFit.contain,
                   ),
-                  Image.asset(
-                    'Assets/Coin.gif',
-                    width: coinSize,
-                    height: coinSize,
-                    fit: BoxFit.contain,
-                  ),
 
                 ],
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,13 +56,20 @@ class PageHomeState extends State<PageHome> {
                 mainAxisSize: MainAxisSize.max,
               ),
               Column(
+                  children: <Widget>[
+                    Text('0 gp'
+                    ),
+                  ]
+              ),
+              Column(
                 children: <Widget>[
                   Image.asset(
-                    'Assets/demo_character.png',
+                    'Assets/demo_character.gif',
                     width: 300,
                     height: 500,
                     fit: BoxFit.contain,
                   ),
+                  Text('Demo Character'),
                 ]
               ),
             ],
