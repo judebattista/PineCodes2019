@@ -11,7 +11,7 @@ class PageHomeState extends State<PageHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar : AppBar(
-        title: Text('College RPG'),
+        title: Text('College RPG PageHome'),
       ),
       );
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'TodayTasks.dart';
-//import 'CreateTasks.dart';
+import 'CreateTasks.dart';
 import 'package:flutter/services.dart';
 import 'PageHome.dart';
 
@@ -37,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _bottomNavBarIndex = 0;
   PageHome pageHome; //home screen
-  currentPage = pageHome;
+  CreateTasks createTasks;
   List<Widget> pageList;
   Widget currentPage;
 
@@ -45,14 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     //create pages in app
     pageHome = PageHome(); //home screen
-
-    pageList = [];
+    createTasks = CreateTasks(); //create Tasks
+    currentPage = pageHome;
+    pageList = [pageHome, createTasks];
     super.initState();
   }
 
   void callback() {
     setState(() {});
-    ;
   }
 
   @override
