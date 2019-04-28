@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               BottomNavigationBarItem(
                 icon: new Icon(Icons.calendar_today),
-                title: new Text('Home'),
+                title: new Text('Calender'),
               ),
               BottomNavigationBarItem(
                   icon: new Icon(Icons.folder), title: new Text('To Do'))

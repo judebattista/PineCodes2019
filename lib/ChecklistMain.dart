@@ -202,9 +202,9 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
         controller: _tabController,
         //type: BottomNavigationBar.fixed,
         children: <Widget> [
-          _buildTasksBody(), //tasks
-          _buildProjectsBody(), //projects
-          _buildClassesBody(), //classes
+          taskList, //tasks
+          projectList, //projects
+          classList, //classes
         ],
       ),
         /*myTabs: <Tabs>(

@@ -30,6 +30,8 @@ dependencies:
   fluttertoast:
   flutter_svg:
   intl:
+  english_words: ^3.1.0
+
 
 
 dev_dependencies:
