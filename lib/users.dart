@@ -1,3 +1,5 @@
+https://www.developerlibs.com/2018/10/flutter-login-registration-authentication-firebase.html
+
 class Users {
   String _name;
   //AVATAR//https://www.monstertechnocodes.com/2019/01/storing-user-data-like-name-image-to.html (tutorial for storing image data)
