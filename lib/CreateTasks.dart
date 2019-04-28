@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CreateTasks extends StatefulWidget{
 
   @override
@@ -5,10 +7,13 @@ class CreateTasks extends StatefulWidget{
 
 }
 
-class _CreateTasksState extends CreateTasks{
+class _CreateTasksState extends State<CreateTasks>{
 @override
-  Widget build(contextBuild context){
-  return Scaffold(
-  )
-}
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar : AppBar(
+        title: Text('College RPG'),
+      ),
+    );
+
 }

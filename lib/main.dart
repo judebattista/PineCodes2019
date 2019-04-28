@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 //import 'TodayTasks.dart';
 //import 'CreateTasks.dart';
 import 'package:flutter/services.dart';
-//import 'PageHome.dart';
+import 'PageHome.dart';
 
 void main() => runApp(ChinchillaChecklist());
 
@@ -17,10 +17,11 @@ class ChinchillaChecklist extends StatelessWidget {
         title: 'Chinchilla Checklist',
         debugShowCheckedModeBanner: true,
         theme: ThemeData(
-          primarySwatch: Colors.pink,
-          accentColor: Colors.deepPurple,
-          canvasColor: Colors.lightBlueAccent[50],
-        ));
+          primarySwatch: Colors.indigo,
+          accentColor: Colors.deepPurple[500],
+          canvasColor: Colors.teal[200],
+        ),
+        home: MyHomePage(title: 'College RPG home'));
   }
 }
 
@@ -34,30 +35,52 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //CreateTasks createTasks;
-  //TodayTasks todayTasks;
-  //PageHome pageHome;
-
+  int _bottomNavBarIndex = 0;
+  PageHome pageHome; //home screen
+  currentPage = pageHome;
   List<Widget> pageList;
   Widget currentPage;
 
   @override
-  void initState(){
-
-    //createTasks = CreateTasks();
-    //todayTasks = TodayTasks();
-    //pageHome = PageHome();
+  void initState() {
+    //create pages in app
+    pageHome = PageHome(); //home screen
 
     pageList = [];
     super.initState();
   }
 
+  void callback() {
+    setState(() {});
+    ;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-           floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: currentPage,
+      bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _bottomNavBarIndex,
+          onTap: (int index) {
+            setState(() {
+              _bottomNavBarIndex = index;
+
+              //Temp page selector
+
+              currentPage = pageList[index];
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text('Home'),
+            ),
+          ]),
     );
   }
 }
