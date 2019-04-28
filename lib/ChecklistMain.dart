@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 //adapted from: https://docs.flutter.io/flutter/material/TabController-class.html
 //Date Accessed: 4/27/2019
 
@@ -21,6 +22,7 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
   void initState(){
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
+    _searchQuery = new TextEditingController();
   }
 
   @override
@@ -28,11 +30,117 @@ class _ChecklistMainState extends State<ChecklistMain> with SingleTickerProvider
     _tabController.dispose();
     super.dispose();
   }
-  
+  static final GlobalKey<ScaffoldState> scaffoldKey =
+  new GlobalKey<ScaffoldState>();
+
+  TextEditingController _searchQuery;
+  bool _isSearching = false;
+  String searchQuery = "Search query";
+
+//this is used to search things in the appBar
+  //adapted from: https://www.developerlibs.com/2018/06/flutter-apply-search-box-in-appbar.html
+  //date accessed: 4/27/2019
+  void _startSearch() {
+    print("open search box");
+    ModalRoute
+        .of(context)
+        .addLocalHistoryEntry(new LocalHistoryEntry(onRemove: _stopSearching));
+
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearchQuery();
+
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearchQuery() {
+    print("close search box");
+    setState(() {
+      _searchQuery.clear();
+      updateSearchQuery("Search query");
+    });
+  }
+
+  Widget _buildTitle(BuildContext context) {
+    var horizontalTitleAlignment =
+    Platform.isIOS ? CrossAxisAlignment.center : CrossAxisAlignment.start;
+
+    return new InkWell(
+      onTap: () => scaffoldKey.currentState.openDrawer(),
+      child: new Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: horizontalTitleAlignment,
+          children: <Widget>[
+            const Text('Seach box'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchField() {
+    return new TextField(
+      controller: _searchQuery,
+      autofocus: true,
+      decoration: const InputDecoration(
+        hintText: 'Search...',
+        border: InputBorder.none,
+        hintStyle: const TextStyle(color: Colors.white30),
+      ),
+      style: const TextStyle(color: Colors.white, fontSize: 16.0),
+      onChanged: updateSearchQuery,
+    );
+  }
+
+  void updateSearchQuery(String newQuery) {
+
+    setState(() {
+      searchQuery = newQuery;
+    });
+    print("search query " + newQuery);
+
+  }
+
+  List<Widget> _buildActions() {
+
+    if (_isSearching) {
+      return <Widget>[
+        new IconButton(
+          icon: const Icon(Icons.clear),
+          onPressed: () {
+            if (_searchQuery == null || _searchQuery.text.isEmpty) {
+              Navigator.pop(context);
+              return;
+            }
+            _clearSearchQuery();
+          },
+        ),
+      ];
+    }
+
+    return <Widget>[
+      new IconButton(
+        icon: const Icon(Icons.search),
+        onPressed: _startSearch,
+      ),
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: _isSearching ? const BackButton() : null,
+        title: _isSearching ? _buildSearchField() : _buildTitle(context),
+        actions: _buildActions(),
+
         bottom: TabBar(
           controller: _tabController,
           tabs: myTabs,
