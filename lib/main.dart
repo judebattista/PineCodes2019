@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'TodayTasks.dart';
 import 'CreateTasks.dart';
+import 'Searchpage.dart';
 import 'package:flutter/services.dart';
 import 'PageHome.dart';
 
@@ -38,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _bottomNavBarIndex = 0;
   PageHome pageHome; //home screen
   CreateTasks createTasks;
+  SearchPage searchPage;
   List<Widget> pageList;
   Widget currentPage;
 
@@ -46,8 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
     //create pages in app
     pageHome = PageHome(); //home screen
     createTasks = CreateTasks(); //create Tasks
+    searchPage = SearchPage();
     currentPage = pageHome;
-    pageList = [pageHome, createTasks];
+    pageList = [pageHome, createTasks, searchPage];
     super.initState();
   }
 
@@ -79,6 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
               icon: new Icon(Icons.home),
               title: new Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.search),
+              title: new Text('Search'),
             ),
           ]),
     );
